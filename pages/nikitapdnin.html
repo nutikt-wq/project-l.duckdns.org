@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Никита — 3D модель</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { margin: 0; overflow: hidden; background: #e0f7fa; font-family: 'Play', Arial, sans-serif; }
+    .page-header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: #2c3e50; padding: 15px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.2); }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+    .top-nav ul { list-style: none; display: flex; justify-content: center; gap: 50px; }
+    .top-nav__item a { color: #fff; text-decoration: none; font-size: 16px; padding: 8px 16px; transition: 0.3s; border-radius: 5px; text-transform: lowercase; }
+    .top-nav__item a:hover, .top-nav__item a.active { background: #34495e; color: #3498db; }
+    .page-header__menu-icon { display: none; flex-direction: column; gap: 5px; cursor: pointer; position: absolute; right: 20px; top: 50%; transform: translateY(-50%); }
+    .page-header__menu-icon span { width: 25px; height: 3px; background: white; border-radius: 2px; }
+    #scene-container { position: fixed; top: 60px; left: 0; width: 100%; height: calc(100% - 60px); }
+    #info { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.7); color: white; padding: 12px 20px; border-radius: 8px; max-width: 80%; text-align: center; opacity: 0; transition: 0.3s; pointer-events: none; z-index: 100; }
+    #info.visible { opacity: 1; pointer-events: auto; }
+    #status { position: absolute; top: 70px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.6); color: white; padding: 6px 12px; border-radius: 4px; font-size: 14px; z-index: 100; }
+    @media (max-width: 768px) {
+      .top-nav ul { display: none; flex-direction: column; gap: 10px; background: #2c3e50; position: absolute; top: 100%; left: 0; right: 0; padding: 15px 20px; }
+      .top-nav ul.active { display: flex; }
+      .page-header__menu-icon { display: flex; }
+      #scene-container { top: 110px; height: calc(100% - 110px); }
+      #status { top: 120px; }
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css?family=Play" rel="stylesheet">
+</head>
+<body>
+
+  <header class="page-header">
+    <div class="container">
+      <nav class="top-nav" id="top-nav">
+        <ul>
+          <li class="top-nav__item"><a href="/">главная</a></li>
+          <li class="top-nav__item"><a href="/3d-models" class="active">3д моделей</a></li>
+          <li class="top-nav__item"><a href="/info">Общая информация</a></li>
+          <li class="top-nav__item"><a href="/pages/contacts.html">контакты</a></li>
+        </ul>
+      </nav>
+      <div class="page-header__menu-icon" id="menu-icon">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </header>
+
+  <div id="scene-container"></div>
+  <div id="info">Никита — историческая фигура. Кликните по модели.</div>
+  <div id="status">Загрузка...</div>
+
+  <!-- ✅ РАБОЧИЕ CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.min.js"></script>
+
+  <script>
+    let scene, camera, renderer, controls, model = null;
+    const infoBox = document.getElementById('info');
+    const statusEl = document.getElementById('status');
+
+    function init() {
+      scene = new THREE.Scene();
+      scene.background = new THREE.Color(0xe0f7fa);
+
+      camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 100);
+      camera.position.set(0, 2, 7);
+
+      renderer = new THREE.WebGLRenderer({ antialias: true });
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setPixelRatio(window.devicePixelRatio);
+      document.getElementById('scene-container').appendChild(renderer.domElement);
+
+      // Освещение
+      const ambient = new THREE.AmbientLight(0xffffff, 0.6);
+      scene.add(ambient);
+      const sun = new THREE.DirectionalLight(0xffffff, 1);
+      sun.position.set(5, 10, 5);
+      scene.add(sun);
+
+      // 🔒 Управление — ТОЛЬКО ГОРИЗОНТАЛЬНОЕ ВРАЩЕНИЕ
+      controls = new THREE.OrbitControls(camera, renderer.domElement);
+      controls.enableDamping = true;
+      controls.dampingFactor = 0.05;
+
+      // Строго горизонтальное вращение (без наклона вверх/вниз)
+      controls.minPolarAngle = Math.PI / 2;  // 90° — строго горизонтально
+      controls.maxPolarAngle = Math.PI / 2;  // 90°
+      
+      controls.target.set(0, 1.5, 0);
+
+      // Загрузка модели
+      const loader = new THREE.GLTFLoader();
+      loader.load(
+        '../model/Nikita.glb',
+        (gltf) => {
+          // Масштабирование и центрирование
+          const box = new THREE.Box3().setFromObject(gltf.scene);
+          const size = box.getSize(new THREE.Vector3()).length();
+          const scale = 4 / size;
+          gltf.scene.scale.set(scale, scale, scale);
+
+          const center = box.getCenter(new THREE.Vector3());
+          gltf.scene.position.x = -center.x * scale;
+          gltf.scene.position.y = -box.min.y * scale;
+          gltf.scene.position.z = -center.z * scale;
+
+          scene.add(gltf.scene);
+          model = gltf.scene;
+
+          statusEl.textContent = "✅ Готово!";
+          statusEl.style.background = 'rgba(0,100,0,0.7)';
+          setTimeout(() => statusEl.style.opacity = '0', 2000);
+        },
+        undefined,
+        (error) => {
+          console.error('Ошибка:', error);
+          statusEl.textContent = '❌ Ошибка загрузки модели';
+          statusEl.style.background = 'rgba(200,0,0,0.8)';
+        }
+      );
+
+      renderer.domElement.addEventListener('click', onSceneClick);
+      window.addEventListener('resize', () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+      });
+    }
+
+    function onSceneClick(event) {
+      if (!model) return;
+      const mouse = new THREE.Vector2();
+      mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+      mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+      const raycaster = new THREE.Raycaster();
+      raycaster.setFromCamera(mouse, camera);
+      const intersects = raycaster.intersectObject(model, true);
+      if (intersects.length > 0) {
+        infoBox.classList.toggle('visible');
+      }
+    }
+
+    function animate() {
+      requestAnimationFrame(animate);
+      controls.update();
+      renderer.render(scene, camera);
+    }
+
+    init();
+    animate();
+
+    document.getElementById('menu-icon').addEventListener('click', function() {
+      document.querySelector('.top-nav ul').classList.toggle('active');
+      this.classList.toggle('menu-active');
+    });
+  </script>
+</body>
+</html>
