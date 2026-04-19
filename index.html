@@ -4,12 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ТЕНИ ТРОНА - 3D Модели исторических личностей</title>
+    
+    <!-- ===== FAVICON - Перекрещивающиеся мечи ===== -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><g transform='rotate(-45 32 32)'><polygon points='32,8 34,8 34,40 32,40' fill='%23D4AF37'/><polygon points='32,8 30,8 32,4' fill='%23D4AF37'/><rect x='24' y='40' width='16' height='3' rx='1' fill='%23D4AF37'/><rect x='30' y='43' width='4' height='10' rx='1' fill='%238B7355'/><circle cx='32' cy='55' r='3' fill='%23D4AF37'/></g><g transform='rotate(45 32 32)'><polygon points='32,8 34,8 34,40 32,40' fill='%23D4AF37'/><polygon points='32,8 30,8 32,4' fill='%23D4AF37'/><rect x='24' y='40' width='16' height='3' rx='1' fill='%23D4AF37'/><rect x='30' y='43' width='4' height='10' rx='1' fill='%238B7355'/><circle cx='32' cy='55' r='3' fill='%23D4AF37'/></g><circle cx='32' cy='32' r='2' fill='%23FFD700'/></svg>">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><g transform='rotate(-45 32 32)'><polygon points='32,8 34,8 34,40 32,40' fill='%23D4AF37'/><polygon points='32,8 30,8 32,4' fill='%23D4AF37'/><rect x='24' y='40' width='16' height='3' rx='1' fill='%23D4AF37'/><rect x='30' y='43' width='4' height='10' rx='1' fill='%238B7355'/><circle cx='32' cy='55' r='3' fill='%23D4AF37'/></g><g transform='rotate(45 32 32)'><polygon points='32,8 34,8 34,40 32,40' fill='%23D4AF37'/><polygon points='32,8 30,8 32,4' fill='%23D4AF37'/><rect x='24' y='40' width='16' height='3' rx='1' fill='%23D4AF37'/><rect x='30' y='43' width='4' height='10' rx='1' fill='%238B7355'/><circle cx='32' cy='55' r='3' fill='%23D4AF37'/></g><circle cx='32' cy='32' r='2' fill='%23FFD700'/></svg>">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        html { scroll-behavior: smooth; }
+        html { scroll-behavior: smooth; scroll-padding-top: 100px; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Montserrat', sans-serif;
@@ -18,20 +23,22 @@
             overflow-x: hidden;
         }
 
-        /* Header & Navigation */
+        /* ===== HEADER ===== */
         header {
             position: fixed;
             top: 0;
             width: 100%;
             z-index: 1000;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.9), rgba(0,0,0,0.7), transparent);
-            padding: 20px 0;
+            background: linear-gradient(180deg, rgba(5,5,5,0.98) 0%, rgba(8,8,8,0.95) 100%);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+            padding: 12px 0;
             transition: all 0.4s ease;
-            border-bottom: 1px solid transparent;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.5);
         }
-        header.solid {
-            background: rgba(8, 8, 8, 0.98);
-            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        header:hover {
+            border-bottom-color: rgba(212, 175, 55, 0.5);
         }
 
         .header-container {
@@ -41,6 +48,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: relative;
         }
 
         .logo {
@@ -48,21 +56,22 @@
             align-items: center;
             gap: 8px;
             font-family: 'Cinzel', serif;
-            font-size: 28px;
+            font-size: 26px;
             font-weight: 700;
             color: #d4af37;
             text-decoration: none;
             letter-spacing: 3px;
             text-transform: uppercase;
             cursor: pointer;
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
         }
-        .logo i { font-size: 24px; color: inherit; }
+        .logo i { font-size: 22px; color: inherit; }
 
-        nav ul { display: flex; list-style: none; gap: 50px; }
+        nav ul { display: flex; list-style: none; gap: 40px; }
         nav a {
-            color: #ffffff;
+            color: #cccccc;
             text-decoration: none;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 500;
             letter-spacing: 2px;
             text-transform: uppercase;
@@ -74,28 +83,39 @@
         nav a::after {
             content: '';
             position: absolute;
-            bottom: 0; left: 0; width: 0; height: 2px;
+            bottom: -2px; left: 0; width: 0; height: 2px;
             background: #d4af37;
             transition: width 0.3s ease;
         }
         nav a:hover { color: #d4af37; }
         nav a:hover::after { width: 100%; }
-        nav a.active-link { color: #d4af37; }
+        nav a.active-link { color: #d4af37; font-weight: 600; }
         nav a.active-link::after { width: 100%; }
 
-        /* ===== PAGES WRAPPER ===== */
-        .main-page, .contacts-page, .model-page {
+        .mobile-menu-btn {
+            display: none;
+            background: rgba(212, 175, 55, 0.15);
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            color: #d4af37;
+            width: 40px; height: 40px;
+            border-radius: 6px;
+            align-items: center; justify-content: center;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .mobile-menu-btn:hover { background: rgba(212, 175, 55, 0.3); }
+
+        .page {
             display: none;
             opacity: 0;
-            transition: opacity 0.5s ease;
+            transition: opacity 0.4s ease;
+            min-height: 100vh;
         }
-        /* По умолчанию показываем главную */
-        .main-page.active { display: block; opacity: 1; }
-        
-        /* Main Page Specifics */
-        .main-page { min-height: 100vh; }
+        .page.active { display: block; opacity: 1; }
 
-        /* Hero Slider */
+        .main-page { background-color: #0a0a0a; }
+
         .hero-slider { position: relative; width: 100%; height: 100vh; overflow: hidden; }
         .slide {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
@@ -125,35 +145,65 @@
             display: flex; justify-content: space-between; padding: 0 40px; z-index: 20;
         }
         .slider-btn {
-            background: rgba(212, 175, 55, 0.2); border: 2px solid #d4af37; color: #d4af37;
-            width: 60px; height: 60px; border-radius: 50%; cursor: pointer; font-size: 24px;
+            background: rgba(0, 0, 0, 0.6); border: 2px solid rgba(212, 175, 55, 0.5); color: #d4af37;
+            width: 55px; height: 55px; border-radius: 50%; cursor: pointer; font-size: 22px;
             transition: all 0.3s ease; display: flex; align-items: center; justify-content: center;
+            backdrop-filter: blur(5px);
         }
-        .slider-btn:hover { background: #d4af37; color: #0a0a0a; transform: scale(1.1); }
+        .slider-btn:hover { background: rgba(212, 175, 55, 0.3); color: #d4af37; transform: scale(1.1); }
         .slider-dots {
             position: absolute; bottom: 100px; left: 50%; transform: translateX(-50%);
             display: flex; gap: 15px; z-index: 20;
         }
         .dot {
-            width: 12px; height: 12px; border-radius: 50%; background: rgba(255,255,255,0.4);
+            width: 12px; height: 12px; border-radius: 50%; background: rgba(255,255,255,0.3);
             cursor: pointer; transition: all 0.3s ease; border: 2px solid transparent;
         }
         .dot.active { background: #d4af37; border-color: #fff; transform: scale(1.3); }
         .dot:hover { background: #d4af37; }
+
+        /* ===== SCROLL ARROW ===== */
         .scroll-down-arrow {
-            position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
-            z-index: 30; cursor: pointer; color: #d4af37; font-size: 32px;
-            animation: bounce 2s infinite; transition: color 0.3s ease;
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 30;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.3s ease;
         }
-        .scroll-down-arrow:hover { color: #fff; }
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
-            40% { transform: translateX(-50%) translateY(-10px); }
-            60% { transform: translateX(-50%) translateY(-5px); }
+        .scroll-down-arrow:hover { transform: translateX(-50%) translateY(3px); }
+        .scroll-down-arrow i {
+            color: #d4af37;
+            font-size: 28px;
+            animation: bounce 2s infinite;
+        }
+        .scroll-down-arrow span {
+            font-size: 10px;
+            color: #888;
+            letter-spacing: 2px;
+            text-transform: uppercase;
         }
 
-        /* About Section */
-        .about-section { padding: 80px 40px; background: #0a0a0a; text-align: center; }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-8px); }
+            60% { transform: translateY(-4px); }
+        }
+
+        .about-section { 
+            padding: 80px 40px 100px; 
+            background: linear-gradient(180deg, #0a0a0a 0%, #0f0f0f 100%);
+            text-align: center;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
         .section-header {
             font-family: 'Cinzel', serif; font-size: 32px; color: #d4af37;
             margin-bottom: 30px; letter-spacing: 2px; line-height: 1.4;
@@ -169,21 +219,520 @@
         }
         .about-text p:last-child { margin-bottom: 0; }
         .gold-divider { width: 60px; height: 2px; background: #d4af37; margin: 30px auto; }
+        
+        /* ===== CTA BUTTON ===== */
         .cta-btn {
             margin-top: 40px; display: inline-block; padding: 18px 50px;
             background: transparent; border: 2px solid #d4af37; color: #d4af37;
             font-family: 'Cinzel', serif; font-size: 14px; font-weight: 600;
             letter-spacing: 3px; text-transform: uppercase; text-decoration: none;
-            cursor: pointer; transition: all 0.3s ease; position: relative; overflow: hidden;
+            cursor: pointer; transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); 
+            position: relative; overflow: hidden;
+            border-radius: 4px;
         }
         .cta-btn::before {
             content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
-            background: #d4af37; transition: left 0.3s ease; z-index: -1;
+            background: #d4af37; transition: left 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); z-index: -1;
         }
-        .cta-btn:hover { color: #0a0a0a; }
+        .cta-btn:hover { 
+            color: #0a0a0a; 
+            transform: scale(1.02);
+            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4);
+        }
         .cta-btn:hover::before { left: 0; }
 
-        /* ===== CONTACTS PAGE ===== */
+        /* ===== 3D MODEL PAGE - FULL HEIGHT FIX ===== */
+        .model-page {
+            background: #050505;
+            min-height: 100vh;
+            display: none;
+            opacity: 0;
+        }
+        .model-page.active { display: flex; opacity: 1; }
+
+        .model-layout {
+            display: grid;
+            grid-template-columns: 45% 55%;
+            width: 100%;
+            height: 100vh; /* Full viewport height */
+            overflow: hidden;
+            /* Removed padding-top, header is fixed so content starts below it naturally */
+        }
+
+        .viewer-section {
+            position: relative;
+            background: radial-gradient(circle at center, #1a1510 0%, #0a0a0a 100%);
+            overflow: hidden;
+            border-right: 1px solid rgba(212, 175, 55, 0.15);
+            height: 100%;
+        }
+
+        #canvas-container {
+            width: 100%;
+            height: 100%;
+            cursor: grab;
+        }
+        #canvas-container:active { cursor: grabbing; }
+
+        #loader {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #d4af37;
+            font-family: 'Cinzel', serif;
+            font-size: 20px;
+            z-index: 20;
+            text-align: center;
+        }
+
+        .loader-spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(212, 175, 55, 0.2);
+            border-top-color: #d4af37;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* Controls */
+        .viewer-controls {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            z-index: 10;
+        }
+
+        .control-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.7);
+            border: 2px solid rgba(212, 175, 55, 0.5);
+            color: #d4af37;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .control-btn:hover {
+            background: rgba(212, 175, 55, 0.9);
+            color: #0a0a0a;
+            transform: scale(1.1);
+            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.5);
+        }
+
+        /* Control Guide Overlay - MOVED DOWN */
+        .controls-guide {
+            position: absolute;
+            top: 80px; /* Moved down from 20px */
+            right: 20px;
+            background: rgba(0, 0, 0, 0.65);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(212, 175, 55, 0.25);
+            border-radius: 8px;
+            padding: 12px 16px;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            font-size: 12px;
+            color: #ccc;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        .guide-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .guide-item i {
+            color: #d4af37;
+            width: 18px;
+            text-align: center;
+            font-size: 14px;
+        }
+        @media (max-width: 1024px) {
+            .controls-guide { display: none; }
+        }
+
+        /* Info Panel */
+        .info-panel {
+            background: linear-gradient(135deg, rgba(15,15,15,0.98) 0%, rgba(10,10,10,0.98) 100%);
+            border-left: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            height: 100%;
+        }
+
+        /* Character Selector - MOVED DOWN */
+        .char-selector {
+            padding: 80px 20px 20px; /* Added top padding */
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            background: transparent;
+            flex-shrink: 0;
+        }
+
+        .selector-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 10px;
+            font-weight: 600;
+            color: #555;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            padding-left: 4px;
+        }
+
+        .char-select-wrapper {
+            position: relative;
+        }
+
+        .char-select-button {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .char-select-button:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(212, 175, 55, 0.3);
+        }
+
+        .char-select-button.active {
+            background: rgba(212, 175, 55, 0.1);
+            border-color: rgba(212, 175, 55, 0.4);
+        }
+
+        .char-select-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .char-select-thumb {
+            width: 40px;
+            height: 40px;
+            border-radius: 6px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .char-select-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .char-select-text h4 {
+            font-family: 'Cinzel', serif;
+            font-size: 13px;
+            color: #d4af37;
+            margin-bottom: 2px;
+        }
+
+        .char-select-text span {
+            font-size: 10px;
+            color: #666;
+        }
+
+        .char-select-arrow {
+            color: #d4af37;
+            font-size: 12px;
+            transition: transform 0.3s ease;
+        }
+
+        .char-select-button.active .char-select-arrow {
+            transform: rotate(180deg);
+        }
+
+        .char-dropdown {
+            position: absolute;
+            top: calc(100% + 8px);
+            left: 0;
+            right: 0;
+            background: rgba(10, 10, 10, 0.98);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 8px;
+            padding: 8px;
+            z-index: 100;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .char-dropdown.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .char-dropdown-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .char-dropdown-item:hover {
+            background: rgba(212, 175, 55, 0.1);
+        }
+
+        .char-dropdown-item.active {
+            background: rgba(212, 175, 55, 0.15);
+        }
+
+        .char-dropdown-thumb {
+            width: 36px;
+            height: 36px;
+            border-radius: 5px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .char-dropdown-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .char-dropdown-info h4 {
+            font-family: 'Cinzel', serif;
+            font-size: 12px;
+            color: #d4af37;
+            margin-bottom: 2px;
+        }
+
+        .char-dropdown-info span {
+            font-size: 10px;
+            color: #666;
+        }
+
+        /* Facts Content */
+        .facts-content {
+            flex: 1;
+            padding: 24px;
+            overflow-y: auto;
+        }
+
+        .facts-content::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .facts-content::-webkit-scrollbar-track {
+            background: rgba(255,255,255,0.03);
+        }
+
+        .facts-content::-webkit-scrollbar-thumb {
+            background: rgba(212, 175, 55, 0.3);
+            border-radius: 3px;
+        }
+
+        .fact-header {
+            margin-bottom: 24px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid rgba(212, 175, 55, 0.15);
+            animation: fadeInUp 0.6s ease;
+        }
+
+        .fact-name {
+            font-family: 'Cinzel', serif;
+            font-size: 28px;
+            color: #d4af37;
+            margin-bottom: 6px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .fact-role {
+            font-size: 12px;
+            color: #888;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        .fact-dates {
+            font-size: 12px;
+            color: #666;
+            font-style: italic;
+        }
+
+        .fact-section {
+            margin-bottom: 20px;
+            animation: fadeInUp 0.6s ease 0.2s both;
+        }
+
+        .fact-section h3 {
+            color: #d4af37;
+            font-family: 'Cinzel', serif;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            padding-left: 10px;
+            border-left: 3px solid rgba(212, 175, 55, 0.4);
+            letter-spacing: 1px;
+        }
+
+        .fact-box {
+            background: rgba(30, 30, 30, 0.8);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            padding: 18px;
+            margin-bottom: 16px;
+            border-radius: 8px;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            opacity: 0;
+            transform: translateX(-20px);
+            animation: slideInLeft 0.5s ease forwards;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+        }
+
+        .fact-box:nth-child(1) { animation-delay: 0.3s; }
+        .fact-box:nth-child(2) { animation-delay: 0.4s; }
+        .fact-box:nth-child(3) { animation-delay: 0.5s; }
+        .fact-box:nth-child(4) { animation-delay: 0.6s; }
+
+        .fact-box:hover {
+            background: rgba(40, 35, 30, 0.9);
+            border-color: rgba(212, 175, 55, 0.7);
+            transform: translateX(5px) scale(1.01);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7), 0 0 10px rgba(212, 175, 55, 0.2);
+        }
+
+        .fact-box strong {
+            color: #d4af37;
+            display: block;
+            margin-bottom: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 8px;
+        }
+
+        .fact-box p {
+            color: #ccc;
+            line-height: 1.7;
+            font-size: 14px;
+            margin: 0;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .model-layout {
+                grid-template-columns: 1fr;
+                grid-template-rows: 50% 50%;
+            }
+            .info-panel {
+                border-left: none;
+                border-top: 1px solid rgba(255, 255, 255, 0.08);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container { flex-direction: column; gap: 10px; padding: 15px 20px; }
+            nav ul { flex-wrap: wrap; justify-content: center; gap: 10px; }
+            nav a { font-size: 12px; padding: 4px 6px; }
+            .logo { font-size: 22px; }
+            .slide-title { font-size: 32px; }
+            .fact-name { font-size: 24px; }
+        }
+
+        @media (max-width: 600px) {
+            .header-container { flex-direction: row; justify-content: space-between; align-items: center; }
+            .logo { font-size: 20px; order: 1; }
+            .mobile-menu-btn { display: flex; order: 2; }
+            nav {
+                position: absolute; top: 100%; left: 0; width: 100%;
+                background: rgba(8, 8, 8, 0.98); border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+                padding: 10px 0; display: none; z-index: 999;
+            }
+            nav.open { display: block; }
+            nav ul { flex-direction: column; gap: 0; padding: 0 20px; }
+            nav a { display: block; padding: 15px 0; text-align: center; border-bottom: 1px solid rgba(212,175,55,0.1); font-size: 14px; }
+            nav a:last-child { border-bottom: none; }
+
+            .model-page { padding-top: 0; }
+            .model-layout { height: 100vh; }
+            .char-selector { padding: 76px 16px 16px; } /* Adjusted for mobile */
+            .facts-content { padding: 16px; }
+        }
+
+        /* Personalities Gallery */
+        .personalities-page { padding-top: 65px; padding-bottom: 80px; background: #080808; }
+        .personalities-page.active { display: block; opacity: 1; }
+        .personalities-title { text-align: center; font-family: 'Cinzel', serif; font-size: 48px; color: #d4af37; margin-bottom: 60px; letter-spacing: 4px; text-transform: uppercase; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+        .gallery-item { position: relative; overflow: hidden; border-radius: 8px; cursor: pointer; border: 1px solid rgba(212, 175, 55, 0.15); background-color: #111; aspect-ratio: 3/4; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease, filter 0.5s ease; filter: brightness(0.85); }
+        .gallery-overlay { position: absolute; bottom: 0; left: 0; width: 100%; padding: 60px 25px 25px; background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, transparent 100%); z-index: 2; }
+        .person-name { font-family: 'Cinzel', serif; font-size: 22px; color: #d4af37; margin-bottom: 5px; }
+        .person-role { font-size: 12px; color: #bbb; letter-spacing: 2px; text-transform: uppercase; }
+        .gallery-item:hover { border-color: #d4af37; box-shadow: 0 10px 40px rgba(212, 175, 55, 0.25); transform: translateY(-5px); }
+        .gallery-item:hover img { transform: scale(1.05); filter: brightness(1); }
+
+        /* Person Detail Pages */
+        .person-detail-page { padding: 65px 0 80px; background: linear-gradient(135deg, #0a0a0a 0%, #121212 100%); min-height: 100vh; overflow-y: auto; transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); transform: scale(1.02) translateZ(0); opacity: 0; }
+        .person-detail-page.active { display: flex; align-items: center; opacity: 1; transform: scale(1) translateZ(0); }
+        .back-btn { position: fixed; top: 100px; left: 30px; background: rgba(212, 175, 55, 0.15); border: 2px solid #d4af37; color: #d4af37; width: 50px; height: 50px; border-radius: 50%; cursor: pointer; font-size: 20px; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center; z-index: 100; }
+        .back-btn:hover { background: #d4af37; color: #0a0a0a; transform: translateX(-5px); }
+        .detail-container { max-width: 1200px; margin: 0 auto; padding: 0 40px; display: grid; grid-template-columns: 450px 1fr; gap: 60px; align-items: start; width: 100%; }
+        .detail-image { width: 100%; border-radius: 12px; overflow: hidden; border: 3px solid rgba(212, 175, 55, 0.3); box-shadow: 0 25px 70px rgba(0,0,0,0.6); aspect-ratio: 3/4; background: #111; position: sticky; top: 120px; }
+        .detail-image img { width: 100%; height: 100%; object-fit: cover; display: block; filter: brightness(0.9) contrast(1.05); }
+        .detail-content { padding: 20px 0; }
+        .detail-header { margin-bottom: 30px; padding-bottom: 20px; border-bottom: 2px solid rgba(212, 175, 55, 0.2); }
+        .detail-content h1 { font-family: 'Cinzel', serif; font-size: 36px; color: #d4af37; margin-bottom: 8px; line-height: 1.1; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+        .detail-role { font-size: 15px; color: #d4af37; letter-spacing: 2px; text-transform: uppercase; font-weight: 600; margin-bottom: 5px; }
+        .detail-dates { font-size: 14px; color: #888; font-style: italic; }
+        .detail-section { margin-bottom: 30px; padding-left: 20px; border-left: 3px solid rgba(212, 175, 55, 0.4); }
+        .detail-section h2 { color: #e8c56d; font-family: 'Cinzel', serif; font-size: 20px; margin-bottom: 12px; font-weight: 600; }
+        .detail-text p { color: #c9c9c9; line-height: 1.9; font-size: 15.5px; margin-bottom: 18px; text-align: justify; hyphens: auto; }
+        .detail-section:first-of-type p:first-letter { font-family: 'Cinzel', serif; font-size: 3.2em; float: left; line-height: 0.85; margin-right: 10px; margin-top: 5px; color: #d4af37; text-shadow: 0 2px 8px rgba(0,0,0,0.6); }
+
+        @media (max-width: 1024px) {
+            .detail-container { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+            .detail-image { max-width: 450px; margin: 0 auto 30px; position: relative; top: 0; }
+            .detail-section { text-align: left; }
+        }
+
+        /* Contacts */
         .contacts-page {
             min-height: 100vh; position: relative; overflow: hidden;
             background: linear-gradient(to bottom, #0a0a0a 0%, #050505 100%);
@@ -238,82 +787,23 @@
         }
         .submit-btn:hover { color: #0a0a0a; transform: scale(1.02); }
         .submit-btn:hover::before { left: 0; }
+        .form-status {
+            text-align: center; font-size: 15px; letter-spacing: 1px;
+            margin-top: 15px; display: none; padding: 14px; border-radius: 4px;
+            animation: fadeIn 0.4s ease;
+        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+        .form-status.success { display: block; color: #4ade80; background: rgba(74,222,128,0.1); border: 1px solid rgba(74,222,128,0.3); }
+        .form-status.error { display: block; color: #ef4444; background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3); }
         .contacts-footer {
             position: absolute; bottom: 30px; left: 0; width: 100%; text-align: center; z-index: 1;
         }
         .contacts-footer p { color: #444; font-size: 12px; letter-spacing: 1px; }
-
-        /* ===== 3D MODEL PAGE ===== */
-        .model-page {
-            min-height: 100vh; position: relative; overflow: hidden;
-            background: radial-gradient(circle at center, #1a1510 0%, #050505 100%);
-            padding-top: 80px; /* Space for header */
-        }
-        .model-page.active { display: flex; flex-direction: column; align-items: center; opacity: 1; }
-
-        #canvas-container {
-            width: 100%;
-            height: calc(100vh - 80px);
-            position: relative;
-            cursor: grab;
-        }
-        #canvas-container:active { cursor: grabbing; }
-
-        .model-info {
-            position: absolute;
-            bottom: 40px;
-            left: 50%;
-            transform: translateX(-50%);
-            text-align: center;
-            z-index: 10;
-            background: rgba(0, 0, 0, 0.6);
-            padding: 20px 40px;
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            backdrop-filter: blur(5px);
-        }
-        .model-name {
-            font-family: 'Cinzel', serif;
-            font-size: 24px;
-            color: #d4af37;
-            margin-bottom: 10px;
-        }
-        .model-desc {
-            font-size: 14px;
-            color: #ccc;
-        }
-
-        /* Loader */
-        #loader {
-            position: absolute;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            color: #d4af37;
-            font-family: 'Cinzel', serif;
-            font-size: 24px;
-            z-index: 20;
-        }
-
-        /* Responsive */
-        @media (max-width: 968px) {
-            .contacts-page { padding-top: 130px; }
-            .contacts-title { font-size: 36px; }
-            .contact-form { padding: 35px 25px; }
-            .slide-title { font-size: 32px; }
-            nav ul { gap: 20px; }
-            .logo { font-size: 22px; }
-            .about-text-container { padding: 25px; }
-        }
-        @media (max-width: 600px) {
-            nav ul { display: none; }
-            .header-container { justify-content: center; }
-            .contacts-title { font-size: 28px; letter-spacing: 3px; }
-            .contact-form { padding: 30px 20px; }
-        }
     </style>
 </head>
 <body>
 
-    <!-- Header -->
+    <!-- ===== FIXED HEADER ===== -->
     <header id="mainHeader">
         <div class="header-container">
             <div class="logo" onclick="switchPage('main')">
@@ -321,58 +811,58 @@
                 ТЕНИ ТРОНА
                 <i class="fas fa-crossed-swords"></i>
             </div>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
             <nav>
                 <ul>
-                    <li><a href="#" class="nav-main active-link" onclick="switchPage('main')">ГЛАВНОЕ</a></li>
-                    <li><a href="#" class="nav-model" onclick="switchPage('model')">3D-МОДЕЛЬ</a></li>
-                    <li><a href="#">ПЕРСОНЫ</a></li>
-                    <li><a href="#" class="nav-contacts" onclick="switchPage('contacts')">КОНТАКТЫ</a></li>
+                    <li><a href="javascript:void(0)" class="nav-main active-link" onclick="switchPage('main')">ГЛАВНОЕ</a></li>
+                    <li><a href="javascript:void(0)" class="nav-model" onclick="switchPage('model')">3D-МОДЕЛЬ</a></li>
+                    <li><a href="javascript:void(0)" class="nav-personalities" onclick="switchPage('personalities')">ПЕРСОНЫ</a></li>
+                    <li><a href="javascript:void(0)" class="nav-contacts" onclick="switchPage('contacts')">КОНТАКТЫ</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <!-- ===== ГЛАВНАЯ СТРАНИЦА ===== -->
-    <div class="main-page active" id="mainPage">
-        
-        <!-- Hero Slider -->
+    <!-- MAIN PAGE -->
+    <div class="page main-page active" id="mainPage">
         <section id="hero" class="hero-slider">
-            <div class="slide active" style="background-image: url('главное/%D0%91%D0%BE%D1%80%D0%BE%D0%B4%D0%B8%D0%BD%D1%81%D0%BA%D0%BE%D0%B5%20%D1%81%D1%80%D0%B0%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5.jpg');">
+            <div class="slide active" style="background-image: url('Main/Borodinskoe.webp');">
                 <div class="slide-content">
                     <h1 class="slide-title">3Д МОДЕЛИ</h1>
                     <p class="slide-description">забытых советников, супруг и реформаторов Древней Руси и Российской империи</p>
                 </div>
             </div>
-            
-            <div class="slide" style="background-image: url('главное/%D0%B1%D0%BE%D1%80%D1%8C%D0%B1%D0%B0%20%D0%BF%D0%B0%D0%BF%D1%81%D1%82%D0%B2%D0%B0%20%D0%B8%20%D0%B8%D0%BC%D0%BF%D0%B5%D1%80%D0%B8%D0%B8.jpg');">
+            <div class="slide" style="background-image: url('Main/Papstvo.webp');">
                 <div class="slide-content">
                     <h1 class="slide-title">СОВЕТНИКИ И РЕФОРМАТОРЫ</h1>
                     <p class="slide-description">Люди, не занимавшие трон, но менявшие законы, армию и экономику страны</p>
                 </div>
             </div>
-            
-            <div class="slide" style="background-image: url('главное/%D1%81%D0%B5%D0%BC%D0%B8%D0%BB%D0%B5%D1%82%D0%BA%D0%B0.jpg');">
+            <div class="slide" style="background-image: url('Main/Semiletka.webp');">
                 <div class="slide-content">
                     <h1 class="slide-title">СУПРУГИ</h1>
                     <p class="slide-description">Женщины, чьи браки, переписка и влияние на первых лиц определяли дипломатию, династические союзы и даже культурный климат империи</p>
                 </div>
             </div>
-
             <div class="slider-controls">
                 <button class="slider-btn" onclick="changeSlide(-1)"><i class="fas fa-chevron-left"></i></button>
                 <button class="slider-btn" onclick="changeSlide(1)"><i class="fas fa-chevron-right"></i></button>
             </div>
-
             <div class="slider-dots">
                 <span class="dot active" onclick="goToSlide(0)"></span>
                 <span class="dot" onclick="goToSlide(1)"></span>
                 <span class="dot" onclick="goToSlide(2)"></span>
             </div>
-
-            <div class="scroll-down-arrow" onclick="scrollToAbout()"><i class="fas fa-chevron-down"></i></div>
+            
+            <!-- SCROLL ARROW -->
+            <div class="scroll-down-arrow" onclick="scrollToAbout()">
+                <i class="fas fa-chevron-down"></i>
+                <span>Подробнее</span>
+            </div>
         </section>
 
-        <!-- Описание Проекта -->
         <section id="about" class="about-section">
             <h2 class="section-header">Интерактивная 3D-галерея забытых советников, супруг и реформаторов Древней Руси и Российской империи</h2>
             <div class="about-text-container">
@@ -387,273 +877,555 @@
         </section>
     </div>
 
-    <!-- ===== СТРАНИЦА 3D МОДЕЛИ ===== -->
-    <div class="model-page" id="modelPage">
-        <div id="loader">Загрузка модели...</div>
-        <div id="canvas-container"></div>
-        
-        <div class="model-info">
-            <h3 class="model-name">Историческая Фигура</h3>
-            <p class="model-desc">Используйте мышь для вращения и приближения</p>
+    <!-- 3D MODEL PAGE -->
+    <div class="page model-page" id="modelPage">
+        <div class="model-layout">
+            <div class="viewer-section">
+                <div id="loader"><div class="loader-spinner"></div>Загрузка модели...</div>
+                <div id="canvas-container"></div>
+                <div class="controls-guide">
+                    <div class="guide-item"><i class="fas fa-mouse-pointer"></i> ЛКМ: Вращение</div>
+                    <div class="guide-item"><i class="fas fa-search-plus"></i> Колесо: Масштаб</div>
+                    <div class="guide-item"><i class="fas fa-sync-alt"></i> Авто: Вращение</div>
+                </div>
+                <div class="viewer-controls">
+                    <button class="control-btn" onclick="resetCamera()"><i class="fas fa-compress-arrows-alt"></i></button>
+                    <button class="control-btn" id="rotateToggle" onclick="toggleRotation()"><i class="fas fa-pause"></i></button>
+                    <button class="control-btn" onclick="toggleFullscreen()"><i class="fas fa-expand"></i></button>
+                </div>
+            </div>
+
+            <div class="info-panel">
+                <div class="char-selector">
+                    <div class="selector-title">Выберите персонажа</div>
+                    <div class="char-select-wrapper">
+                        <div class="char-select-button" id="charSelectButton" onclick="toggleCharDropdown()">
+                            <div class="char-select-info">
+                                <div class="char-select-thumb"><img id="selectedCharThumb" src="" alt=""></div>
+                                <div class="char-select-text">
+                                    <h4 id="selectedCharName">Анна Леопольдовна</h4>
+                                    <span id="selectedCharRole">Правительница-регент</span>
+                                </div>
+                            </div>
+                            <i class="fas fa-chevron-down char-select-arrow"></i>
+                        </div>
+                        <div class="char-dropdown" id="charDropdown"></div>
+                    </div>
+                </div>
+                <div class="facts-content" id="factsContent"></div>
+            </div>
         </div>
     </div>
 
-    <!-- ===== СТРАНИЦА КОНТАКТЫ ===== -->
-    <div class="contacts-page" id="contactsPage">
+    <!-- PERSONALITIES PAGE -->
+    <div class="page personalities-page" id="personalitiesPage">
+        <h1 class="personalities-title">Галерея Личностей</h1>
+        <div class="gallery-grid">
+            <div class="gallery-item" onclick="openPerson(0)"><img src="Personalities/AnnaLeopodovna.webp" alt=""><div class="gallery-overlay"><div class="person-name">Анна Леопольдовна</div><div class="person-role">Правительница-регент</div></div></div>
+            <div class="gallery-item" onclick="openPerson(1)"><img src="Personalities/Annayaroslavna.webp" alt=""><div class="gallery-overlay"><div class="person-name">Анна Ярославна</div><div class="person-role">Королева Франции</div></div></div>
+            <div class="gallery-item" onclick="openPerson(2)"><img src="Personalities/Evpraksia.webp" alt=""><div class="gallery-overlay"><div class="person-name">Евпраксия Всеволодовна</div><div class="person-role">Императрица СРИ</div></div></div>
+            <div class="gallery-item" onclick="openPerson(3)"><img src="Personalities/Marphaboreskaya.webp" alt=""><div class="gallery-overlay"><div class="person-name">Марфа Борецкая</div><div class="person-role">Новгородская посадница</div></div></div>
+            <div class="gallery-item" onclick="openPerson(4)"><img src="Personalities/Nikitapanin.webp" alt=""><div class="gallery-overlay"><div class="person-name">Никита Панин</div><div class="person-role">Дипломат, наставник</div></div></div>
+            <div class="gallery-item" onclick="openPerson(5)"><img src="Personalities/Praskoviabrus.webp" alt=""><div class="gallery-overlay"><div class="person-name">Прасковья Брюс</div><div class="person-role">Статс-дама</div></div></div>
+        </div>
+    </div>
+
+    <!-- PERSON DETAIL PAGES (0-5) -->
+    <div class="page person-detail-page" id="person0">
+        <button class="back-btn" onclick="backToGallery()"><i class="fas fa-arrow-left"></i></button>
+        <div class="detail-container">
+            <div class="detail-image"><img src="Personalities/AnnaLeopodovna.webp" alt=""></div>
+            <div class="detail-content">
+                <div class="detail-header"><h1>👸 Анна Леопольдовна</h1><div class="detail-role">Правительница-регент Российской империи</div><div class="detail-dates">1718–1746</div></div>
+                <div class="detail-section"><h2>Год милосердия накануне краха</h2><div class="detail-text"><p>Анна Леопольдовна — фигура трагическая, оказавшаяся заложницей династических игр. Внучка царя Ивана V, племянница Анны Иоанновны, она была воспитана в строгости, не испытывая ни малейшего влечения к государственным делам. Главным ее увлечением было чтение романов и домашний уют, а не придворные интриги. Однако судьба распорядилась иначе: умирающая Анна Иоанновна назначила наследником ее новорожденного сына Ивана Антоновича, а регентом при младенце стал ненавистный всем герцог Бирон.</p><p>Ночной переворот 9 ноября 1740 года, организованный фельдмаршалом Минихом, низложил Бирона и неожиданно для самой Анны вознес ее на вершину власти. Она стала Правительницей Российской империи. Не обладая талантами государыни, Анна Леопольдовна тем не менее успела оставить след, весьма нетипичный для сурового XVIII века. За год своего регентства она упразднила институт придворных шутов (превращавших жизнь во дворце в балаган), ограничила роскошь и, что важнее, провела ряд актов милосердия: объявила амнистию политическим ссыльным и ослабила хватку всесильной Тайной канцелярии.</p><p>Ее роковой ошибкой стала недооценка дочери Петра Великого — Елизаветы. Склонность Анны проводить вечера в узком кругу фавориток и немецких родственников лишила ее поддержки русской гвардии. 25 ноября 1741 года Елизавета Петровна во главе преображенцев вошла в ее спальню. Анна Леопольдовна была свергнута и вместе с семьей отправлена в ссылку в Холмогоры. Там, под Архангельском, в полной изоляции, родив еще троих детей, она скончалась от послеродовой горячки в возрасте 28 лет. Ее сын, свергнутый император Иван VI, навсегда остался в русской истории как «русская железная маска».</p></div></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page person-detail-page" id="person1">
+        <button class="back-btn" onclick="backToGallery()"><i class="fas fa-arrow-left"></i></button>
+        <div class="detail-container">
+            <div class="detail-image"><img src="Personalities/Annayaroslavna.webp" alt=""></div>
+            <div class="detail-content">
+                <div class="detail-header"><h1>👑 Анна Ярославна</h1><div class="detail-role">Королева Франции</div><div class="detail-dates">ок. 1032 – ок. 1075/1089</div></div>
+                <div class="detail-section"><h2>Русская княжна на троне Капетингов</h2><div class="detail-text"><p>Младшая дочь великого киевского князя Ярослава Мудрого и шведской принцессы Ингигерды, Анна стала живым воплощением династического величия Руси. Около 1051 года в Киев прибыло посольство из далекой Франции. Вдовствующий король Генрих I Капетинг, искавший невесту знатного рода, не связанную узами кровного родства, прослышал о красоте и «прелестях» дочери могущественного «короля рутенов». Брак с Генрихом I в Реймском соборе стал уникальным событием: в то время как Франция только начинала путь к централизации, Анна приехала из страны, где уже существовала развитая государственность и письменная культура.</p><p>В качестве королевы Франции Анна проявила себя как мудрая правительница и мать. Она родила наследника — Филиппа I, чье греческое имя, данное в честь византийских императоров, было новаторством для династии Капетингов. Уровень ее образования поражал французский двор: на государственных актах рядом с подписью мужа появлялась ее твердая подпись славянской кириллицей — «АНА РЪИНА» (Anna Regina), тогда как французские вельможи в лучшем случае ставили крестик. Именно с Анной связывают появление во Франции знаменитого Реймсского Евангелия, на котором впоследствии присягали все французские монархи вплоть до Людовика XVI.</p><p>Овдовев в 1060 году, Анна стала регентшей и сохранила влияние при дворе сына. Однако ее страстная натура не позволила ей остаться в тени. Она вступила в скандальный брак с могущественным графом Раулем де Крепи, который ради нее похитил ее и развелся с первой женой. Этот союз привел к временному отлучению пары от церкви, но в итоге королева-мать сумела вернуть расположение сына и до конца дней пользовалась уважением как «Анна Русская». Основанный ею монастырь Святого Винсента в Санлисе и поныне хранит память о прародительнице почти тридцати королей Франции.</p></div></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page person-detail-page" id="person2">
+        <button class="back-btn" onclick="backToGallery()"><i class="fas fa-arrow-left"></i></button>
+        <div class="detail-container">
+            <div class="detail-image"><img src="Personalities/Evpraksia.webp" alt=""></div>
+            <div class="detail-content">
+                <div class="detail-header"><h1>👸 Евпраксия Всеволодовна</h1><div class="detail-role">Императрица Священной Римской империи</div><div class="detail-dates">ок. 1069–1109</div></div>
+                <div class="detail-section"><h2>Императрица Адельгейда: жертва на алтаре европейской политики</h2><div class="detail-text"><p>История Евпраксии, внучки Ярослава Мудрого и сестры Владимира Мономаха, — это почти детективный роман с элементами высокой трагедии. Дочь киевского князя Всеволода, она была выдана замуж в далекую Саксонию за маркграфа Генриха Штаденского. Рано овдовев, молодая и, по отзывам, невероятно красивая княжна привлекла внимание одного из самых могущественных монархов Европы — императора Священной Римской империи Генриха IV.</p><p>В 1089 году состоялась пышная свадьба. Евпраксия стала императрицей под именем Адельгейда. Однако ее супруг в это время вел жесточайшую борьбу с папством за инвеституру. Брак обернулся для русской княжны адом. Генрих IV, по всей видимости страдавший психическим расстройством, подвергал жену изощренным унижениям. Не выдержав мучений, Евпраксия в 1094 году совершила дерзкий побег к злейшим врагам мужа — графине Матильде Тосканской.</p><p>Там, на церковных соборах в Констанце и Пьяченце, она дала сенсационные показания против императора, публично обвинив его в сатанизме, сексуальных извращениях и насилии. Этот скандал стал мощнейшим ударом по репутации Генриха IV в его борьбе с Папой Урбаном II. Получив церковное отпущение грехов и оправдание, Евпраксия вернулась на Русь, где в 1106 году постриглась в монахини Андреевского монастыря в Киеве. Ее подпись на копии Мстиславова Евангелия — редчайшее свидетельство письменности женщин домонгольской Руси.</p></div></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page person-detail-page" id="person3">
+        <button class="back-btn" onclick="backToGallery()"><i class="fas fa-arrow-left"></i></button>
+        <div class="detail-container">
+            <div class="detail-image"><img src="Personalities/Marphaboreskaya.webp" alt=""></div>
+            <div class="detail-content">
+                <div class="detail-header"><h1>🏛 Марфа Борецкая</h1><div class="detail-role">Защитница Господина Великого Новгорода</div><div class="detail-dates">XV век, ум. 1503</div></div>
+                <div class="detail-section"><h2>Символ утраченной вольности</h2><div class="detail-text"><p>Марфа Борецкая — это не просто исторический персонаж, а символ утраченной вольности. Вдова новгородского посадника Исаака Борецкого, она унаследовала колоссальные земельные владения, которые делали ее одной из богатейших женщин тогдашней Руси. Однако в историю она вошла не как землевладелица, а как вдохновительница и лидер боярской партии, противостоявшей поглощению Новгородской республики растущей мощью Московского княжества.</p><p>В 1470-х годах Марфа и ее сын, посадник Дмитрий, возглавили «литовскую» партию, выступавшую за союз с Великим княжеством Литовским и королем Польши Казимиром IV. Целью было сохранение древних новгородских свобод, вечевого строя и политической автономии в противовес жесткой централизации Ивана III. Москва расценила эти переговоры как государственную измену. Ответом стал карательный поход. В 1471 году в Шелонской битве новгородское ополчение было разгромлено, а сын Марфы Дмитрий публично казнен.</p><p>Потеря сына не сломила Марфу. Она продолжила тайные сношения с Литвой, уповая на помощь Казимира. Однако помощь не пришла. В 1478 году Иван III двинул войска на Новгород и покончил с остатками его самостоятельности. Вечевой колокол — «глас народа» — был снят с Софийской звонницы и вывезен в Москву как трофей. Обширные вотчины Борецкой были конфискованы в государеву казну. Саму Марфу в кандалах доставили в Москву, а затем выслали в Нижний Новгород. Там она была насильно пострижена в монахини под именем Мария, где и окончила свои дни в 1503 году. В памяти Новгородской земли она осталась мученицей за старинную вольность.</p></div></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page person-detail-page" id="person4">
+        <button class="back-btn" onclick="backToGallery()"><i class="fas fa-arrow-left"></i></button>
+        <div class="detail-container">
+            <div class="detail-image"><img src="Personalities/Nikitapanin.webp" alt=""></div>
+            <div class="detail-content">
+                <div class="detail-header"><h1>👑 Никита Иванович Панин</h1><div class="detail-role">Архитектор «Северного аккорда» и наставник императора</div><div class="detail-dates">1718–1783</div></div>
+                <div class="detail-section"><h2>Просвещенный сановник эпохи Екатерины II</h2><div class="detail-text"><p>Граф Никита Иванович Панин — одна из самых влиятельных и, пожалуй, недооцененных фигур екатерининского царствования. Начав карьеру в гвардии, он быстро проявил себя на дипломатическом поприще: долгие годы служил посланником в Дании и Швеции, где досконально изучил механизмы европейской политики и проникся идеями конституционного ограничения монархии.</p><p>Именно эти взгляды он попытался привнести в Россию. Взойдя на престол, Екатерина II, обязанная Панину поддержкой в перевороте, получила от него смелый проект создания Императорского совета — учреждения, которое фактически должно было стать буфером между самодержцем и Сенатом. Императрица, почувствовав угрозу своей абсолютной власти, проект отклонила, однако оставила Панина на ключевом посту главы Коллегии иностранных дел.</p><p>Главным детищем Панина-дипломата стала доктрина «Северный аккорд». В противовес союзу Австрии и Франции, он стремился создать коалицию России, Пруссии, Англии, Дании и Швеции. Этот прагматичный союз должен был обеспечить безопасность балтийского региона. Хотя в полной мере «Аккорд» реализовать не удалось, он определил вектор русской дипломатии на десятилетия вперед. Особое место в биографии Панина занимает его статус воспитателя наследника престола Павла Петровича. Он стал для цесаревича почти отцом, передав ему идеи о рыцарской чести и законности. После женитьбы наследника императрица поспешила отстранить Никиту Ивановича от активной политики, оставив ему почетный статус советника. Панин ушел в тень, оставаясь в глазах современников символом честного сановника, не запятнавшего себя казнокрадством.</p></div></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page person-detail-page" id="person5">
+        <button class="back-btn" onclick="backToGallery()"><i class="fas fa-arrow-left"></i></button>
+        <div class="detail-container">
+            <div class="detail-image"><img src="Personalities/Praskoviabrus.webp" alt=""></div>
+            <div class="detail-content">
+                <div class="detail-header"><h1>👑 Прасковья Александровна Брюс</h1><div class="detail-role">«Брюсша»: подруга и соперница императрицы</div><div class="detail-dates">1729–1786</div></div>
+                <div class="detail-section"><h2>Взлет и падение в фаворитской системе</h2><div class="detail-text"><p>Графиня Прасковья Брюс — одна из самых заметных и противоречивых фигур ближнего круга Екатерины Великой в эпоху ее молодости. Сестра знаменитого полководца П. А. Румянцева-Задунайского, она обладала живым умом, веселым нравом и той дерзкой красотой, которая так нравилась императрице. В ранние годы правления Екатерина называла ее «Брюсша», доверяла ей самые интимные тайны и даже посвятила ей одну из редакций своих знаменитых «Записок».</p><p>Прасковья была не просто статс-дамой, а «наперсницей» — хранительницей туалетов и секретов государыни. Именно через Брюс Екатерина сблизилась с Григорием Орловым. Прасковья умело поддерживала игру, будучи незаменимой участницей маскарадов и увеселений. Однако многолетняя дружба рухнула в одночасье. Причиной стал красавец Иван Римский-Корсаков — очередной фаворит императрицы.</p><p>В 1779 году Екатерина, застав камер-юнкера выходящим из покоев своей подруги, впала в ярость. Измена фаворита была неприятна, но предательство «Брюсши» — невыносимо. Последовала молниеносная опала: Прасковья была немедленно удалена от двора с запретом появляться в столице. Она уехала в Москву, где и провела остаток жизни в полной безвестности. Ее судьба — классический пример головокружительного взлета и жестокого падения в фаворитской системе русского абсолютизма.</p></div></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTACTS PAGE -->
+    <div class="page contacts-page" id="contactsPage">
         <div class="contacts-bg"></div>
         <div class="contacts-content">
             <h1 class="contacts-title">Контакты</h1>
             <div class="contacts-line"></div>
-            <form class="contact-form" onsubmit="return false;">
-                <div class="form-group"><input type="text" placeholder="Имя" required></div>
-                <div class="form-group"><input type="email" placeholder="E-mail" required></div>
-                <div class="form-group"><textarea placeholder="Сообщение" required></textarea></div>
-                <button type="submit" class="submit-btn">Отправить</button>
+            <!-- Contact Form with AJAX submission -->
+            <form id="contactForm" class="contact-form">
+                <div class="form-group"><input type="text" name="Имя" placeholder="Имя" required></div>
+                <div class="form-group"><input type="email" name="Email" placeholder="E-mail" required></div>
+                <div class="form-group"><textarea name="Сообщение" placeholder="Сообщение" required></textarea></div>
+                <button type="submit" class="submit-btn" id="submitBtn">Отправить</button>
+                <div id="formStatus" class="form-status"></div>
             </form>
         </div>
         <div class="contacts-footer"><p>© 2026 Тени Трона. Все права защищены.</p></div>
     </div>
 
-    <!-- Three.js Library (Modules) -->
-    <script type="importmap">
-        {
-            "imports": {
-                "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
-                "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+    <!-- Three.js & Loaders -->
+    <script src="js/three.min.js"></script>
+    <script src="js/GLTFLoader.min.js"></script>
+    <script src="js/DRACOLoader.min.js"></script>
+    <script src="js/OrbitControls.min.js"></script>
+
+    <script>
+        let scene, camera, renderer, controls, currentModel, autoRotate = true, currentModelIndex = 0;
+        let dracoLoader, gltfLoader, isInitialized = false;
+        
+        const models = [
+            { 
+                file: 'Models/AnnaLeopodovna.glb', 
+                name: 'Анна Леопольдовна', 
+                role: 'Правительница-регент Российской империи', 
+                dates: '1718–1746',
+                image: 'Personalities/AnnaLeopodovna.webp',
+                facts: [
+                    { title: '👑 Династические связи', text: 'Была внучкой царя Ивана V и правнучкой Алексея Михайловича. Через мать приходилась внучатой племянницей Петру I.' },
+                    { title: '📚 Образование', text: 'Получила блестящее образование при дворе герцога Мекленбург-Шверинского. Свободно владела немецким, французским и русским языками.' },
+                    { title: '💔 Личная трагедия', text: 'Её сын Иван VI стал самым молодым императором России — ему было всего 2 месяца, когда он взошёл на престол.' }
+                ]
+            },
+            { 
+                file: 'Models/Annayaroslavna.glb', 
+                name: 'Анна Ярославна', 
+                role: 'Королева Франции', 
+                dates: 'ок. 1032 – ок. 1089',
+                image: 'Personalities/Annayaroslavna.webp',
+                facts: [
+                    { title: '📜 Уникальная подпись', text: 'Единственная королева Франции, которая ставила подпись кириллицей. На документах рядом с подписью мужа красовалась «АНА РЪИНА».' },
+                    { title: '📖 Реймсское Евангелие', text: 'Привезла с собой знаменитое Евангелие, написанное кириллицей. На нём присягали все французские короли вплоть до Людовика XVI.' },
+                    { title: '🏰 Основательница', text: 'Основала монастырь Святого Винсента в Санлисе, который существует до сих пор и хранит память о «Анне Русской».' }
+                ]
+            },
+            { 
+                file: 'Models/Evpraksia.glb', 
+                name: 'Евпраксия Всеволодовна', 
+                role: 'Императрица Священной Римской империи', 
+                dates: 'ок. 1069–1109',
+                image: 'Personalities/Evpraksia.webp',
+                facts: [
+                    { title: '⚡ Смелость', text: 'Стала единственной русской княжной, которая публично обвинила императора Священной Римской империи на церковном соборе.' },
+                    { title: '✍️ Письменность', text: 'Её подпись на Мстиславовом Евангелии — один из редчайших примеров женской письменности домонгольской Руси.' },
+                    { title: '🛡️ Защита', text: 'Нашла убежище у графини Матильды Тосканской — одной из самых могущественных женщин средневековой Европы.' }
+                ]
+            },
+            { 
+                file: 'Models/Praskoviabrus.glb', 
+                name: 'Прасковья Брюс', 
+                role: 'Статс-дама', 
+                dates: '1729–1786',
+                image: 'Personalities/Praskoviabrus.webp',
+                facts: [
+                    { title: '👗 Хранительница секретов', text: 'Была «наперсницей» Екатерины II — доверенным лицом, которое хранило самые интимные тайны императрицы.' },
+                    { title: '📝 Литературное наследие', text: 'Екатерина II посвятила ей одну из редакций своих знаменитых «Записок» — уникальная честь для придворной дамы.' },
+                    { title: '🎭 Скандал века', text: 'Её роман с Римским-Корсаковым стал одним из самых громких скандалов екатерининского двора.' }
+                ]
+            },
+            { 
+                file: 'Models/Nikitapanin.glb', 
+                name: 'Никита Иванович Панин', 
+                role: 'Дипломат, наставник Павла I', 
+                dates: '1718–1783',
+                image: 'Personalities/Nikitapanin.webp',
+                facts: [
+                    { title: '🌍 Северный аккорд', text: 'Разработал грандиозный план создания союза северных держав — России, Пруссии, Англии, Дании и Швеции.' },
+                    { title: '📚 Конституционные идеи', text: 'Предложил проект Императорского совета, который должен был ограничить самодержавие — смелый шаг для той эпохи.' },
+                    { title: '👨‍🏫 Наставник', text: 'Воспитал будущего императора Павла I, передав ему идеи о законности и рыцарской чести.' }
+                ]
+            },
+            { 
+                file: 'Models/Marphaboreskaya.glb', 
+                name: 'Марфа Борецкая', 
+                role: 'Защитница Новгорода', 
+                dates: 'XV век, ум. 1503',
+                image: 'Personalities/Marphaboreskaya.webp',
+                facts: [
+                    { title: '💰 Богатейшая женщина', text: 'Владела землями, уступавшими по размерам только владениям новгородского архиепископа и крупнейших монастырей.' },
+                    { title: '🔔 Вечевой колокол', text: 'Стала свидетельницей снятия вечевго колокола — символа новгородской свободы, который вывезли в Москву.' },
+                    { title: '⚔️ Последняя защитница', text: 'Олицетворяла последний отчаянный бой Новгорода за свою независимость перед лицом Москвы.' }
+                ]
             }
+        ];
+
+        function initCharDropdown() {
+            const dropdown = document.getElementById('charDropdown');
+            dropdown.innerHTML = '';
+            models.forEach((model, index) => {
+                const item = document.createElement('div');
+                item.className = 'char-dropdown-item' + (index === 0 ? ' active' : '');
+                item.onclick = () => selectCharacter(index);
+                item.innerHTML = `
+                    <div class="char-dropdown-thumb"><img src="${model.image}" alt="${model.name}"></div>
+                    <div class="char-dropdown-info"><h4>${model.name}</h4><span>${model.role}</span></div>
+                `;
+                dropdown.appendChild(item);
+            });
+            updateSelectedChar(0);
         }
-    </script>
 
-    <script type="module">
-        import * as THREE from 'three';
-        import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
-        import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+        function toggleCharDropdown() {
+            const dropdown = document.getElementById('charDropdown');
+            const button = document.getElementById('charSelectButton');
+            dropdown.classList.toggle('show');
+            button.classList.toggle('active');
+        }
 
-        let scene, camera, renderer, controls, model;
-        let isModelPageActive = false;
+        function selectCharacter(index) {
+            currentModelIndex = index;
+            loadModel(index);
+            updateSelectedChar(index);
+            document.querySelectorAll('.char-dropdown-item').forEach((item, i) => {
+                item.classList.toggle('active', i === index);
+            });
+            document.getElementById('charDropdown').classList.remove('show');
+            document.getElementById('charSelectButton').classList.remove('active');
+        }
 
-        // Init Three.js Scene
+        function updateSelectedChar(index) {
+            const m = models[index];
+            document.getElementById('selectedCharThumb').src = m.image;
+            document.getElementById('selectedCharName').textContent = m.name;
+            document.getElementById('selectedCharRole').textContent = m.role;
+        }
+
+        function updateFactsContent(index) {
+            const m = models[index];
+            const content = document.getElementById('factsContent');
+            content.innerHTML = `
+                <div class="fact-header">
+                    <h2 class="fact-name">${m.name}</h2>
+                    <div class="fact-role">${m.role}</div>
+                    <div class="fact-dates">${m.dates}</div>
+                </div>
+                <div class="fact-section">
+                    <h3>Интересные факты</h3>
+                    ${m.facts.map(fact => `
+                        <div class="fact-box">
+                            <strong>${fact.title}</strong>
+                            <p>${fact.text}</p>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        }
+
         function initThreeJS() {
+            if (isInitialized) return;
             const container = document.getElementById('canvas-container');
-            if (!container) return;
-
-            // Scene
-            scene = new THREE.Scene();
-            // Fog for depth
-            scene.fog = new THREE.FogExp2(0x050505, 0.05);
-
-            // Camera
+            if (!container || container.offsetWidth === 0) { setTimeout(initThreeJS, 50); return; }
+            
+            scene = new THREE.Scene(); 
+            scene.background = new THREE.Color(0x0a0a0a);
+            
             camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
-            camera.position.set(0, 2, 5);
-
-            // Renderer
+            camera.position.set(0, 1.5, 5);
+            
             renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
             renderer.setSize(container.clientWidth, container.clientHeight);
-            renderer.setPixelRatio(window.devicePixelRatio);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
             renderer.toneMapping = THREE.ACESFilmicToneMapping;
             renderer.toneMappingExposure = 1.2;
+            renderer.shadowMap.enabled = true;
+            renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+            
+            container.innerHTML = ''; 
             container.appendChild(renderer.domElement);
-
-            // Controls
-            controls = new OrbitControls(camera, renderer.domElement);
+            
+            controls = new THREE.OrbitControls(camera, renderer.domElement);
+            controls.enablePan = false;
             controls.enableDamping = true;
-            controls.dampingFactor = 0.05;
-            controls.minDistance = 1;
-            controls.maxDistance = 10;
+            controls.autoRotate = true;
+            controls.autoRotateSpeed = 1.5;
+            controls.minPolarAngle = Math.PI / 2;
+            controls.maxPolarAngle = Math.PI / 2;
+
+            
             controls.target.set(0, 1, 0);
-
-            // Lighting
-            const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
+            
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
             scene.add(ambientLight);
-
-            const dirLight = new THREE.DirectionalLight(0xffeebb, 2);
-            dirLight.position.set(5, 10, 7);
+            
+            const dirLight = new THREE.DirectionalLight(0xffffff, 1.5);
+            dirLight.position.set(5, 8, 5);
+            dirLight.castShadow = true;
+            dirLight.shadow.mapSize.width = 2048;
+            dirLight.shadow.mapSize.height = 2048;
             scene.add(dirLight);
-
-            const rimLight = new THREE.SpotLight(0xd4af37, 5);
-            rimLight.position.set(-5, 5, -5);
-            rimLight.lookAt(0, 0, 0);
+            
+            const fillLight = new THREE.DirectionalLight(0xffffff, 0.6);
+            fillLight.position.set(-5, 3, 5);
+            scene.add(fillLight);
+            
+            const rimLight = new THREE.DirectionalLight(0xd4af37, 1.2);
+            rimLight.position.set(0, 5, -5);
             scene.add(rimLight);
-
-            // Load Model
-            loadModel('46.glb');
-
-            // Animation Loop
-            animate();
-
-            // Resize Handler
+            
+            dracoLoader = new THREE.DRACOLoader(); 
+            dracoLoader.setDecoderPath('js/draco/');
+            gltfLoader = new THREE.GLTFLoader(); 
+            gltfLoader.setDRACOLoader(dracoLoader);
+            
+            initCharDropdown();
+            loadModel(0); 
+            isInitialized = true;
+            
+            requestAnimationFrame(() => { onWindowResize(); renderer.render(scene, camera); });
+            animate(); 
             window.addEventListener('resize', onWindowResize);
         }
 
-        function loadModel(path) {
-            const loader = new GLTFLoader();
-            loader.load(
-                path,
-                function (gltf) {
-                    model = gltf.scene;
-                    scene.add(model);
-                    
-                    // Center and Scale model
-                    const box = new THREE.Box3().setFromObject(model);
-                    const center = box.getCenter(new THREE.Vector3());
-                    const size = box.getSize(new THREE.Vector3());
-                    
-                    // Adjust model position
-                    model.position.x -= center.x;
-                    model.position.y -= center.y;
-                    model.position.z -= center.z;
-                    
-                    // Adjust camera based on size
-                    const maxDim = Math.max(size.x, size.y, size.z);
-                    const fov = camera.fov * (Math.PI / 180);
-                    let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2));
-                    camera.position.z = cameraZ * 2.5;
-                    
-                    document.getElementById('loader').style.display = 'none';
-                },
-                function (xhr) {
-                    // Progress
-                    if (xhr.total) {
-                        const percent = (xhr.loaded / xhr.total * 100).toFixed(0);
-                        document.getElementById('loader').innerText = `Загрузка: ${percent}%`;
+        function loadModel(index) {
+            const loaderEl = document.getElementById('loader');
+            if (!loaderEl) return;
+            if (currentModel) { scene.remove(currentModel); currentModel.traverse(c => { if(c.geometry) c.geometry.dispose(); if(c.material) { if(Array.isArray(c.material)) c.material.forEach(m=>m.dispose()); else c.material.dispose(); } }); }
+            
+            loaderEl.style.display = 'block'; 
+            loaderEl.innerHTML = '<div class="loader-spinner"></div>Загрузка...';
+            
+            updateFactsContent(index);
+            
+            gltfLoader.load(models[index].file, gltf => {
+                currentModel = gltf.scene;
+                
+                const box = new THREE.Box3().setFromObject(currentModel);
+                const center = box.getCenter(new THREE.Vector3());
+                const size = box.getSize(new THREE.Vector3());
+                
+                // Fixed model positioning
+                const bottom = box.min.y;
+                currentModel.position.set(-center.x, -bottom + 0.6, -center.z);
+                
+                currentModel.traverse((child) => {
+                    if (child.isMesh) {
+                        child.castShadow = true;
+                        child.receiveShadow = true;
+                        if (child.material) {
+                            child.material.needsUpdate = true;
+                            if (child.material.color) {
+                                child.material.color.multiplyScalar(1.2);
+                            }
+                        }
                     }
-                },
-                function (error) {
-                    console.error('An error happened', error);
-                    document.getElementById('loader').innerText = 'Ошибка загрузки модели';
-                }
-            );
-        }
-
-        function onWindowResize() {
-            const container = document.getElementById('canvas-container');
-            if (!container) return;
-            camera.aspect = container.clientWidth / container.clientHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(container.clientWidth, container.clientHeight);
-        }
-
-        function animate() {
-            requestAnimationFrame(animate);
-            if (isModelPageActive && controls) {
+                });
+                
+                scene.add(currentModel);
+                
+                const maxDim = Math.max(size.x, size.y, size.z);
+                const fov = camera.fov * (Math.PI / 180);
+                const cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2)) * 2.5;
+                // Zoomed in slightly for better view
+                camera.position.set(0, 1.5, cameraZ * 0.6);
+                controls.target.set(0, 1, 0);
                 controls.update();
-                renderer.render(scene, camera);
+                
+                loaderEl.style.display = 'none'; 
+                currentModelIndex = index;
+                requestAnimationFrame(() => { onWindowResize(); renderer.render(scene, camera); });
+            }, xhr => { if(xhr.total) loaderEl.innerHTML = `<div class="loader-spinner"></div>Загрузка: ${Math.round((xhr.loaded/xhr.total)*100)}%`; },
+            error => { console.error(error); loaderEl.innerHTML = 'Ошибка загрузки'; });
+        }
+
+        window.loadModelByIndex = i => { if(i!==currentModelIndex) loadModel(i); document.querySelector('nav')?.classList.remove('open'); };
+        window.resetCamera = () => { 
+            if(!currentModel) return; 
+            const box = new THREE.Box3().setFromObject(currentModel);
+            const size = box.getSize(new THREE.Vector3());
+            const maxDim = Math.max(size.x, size.y, size.z);
+            const fov = camera.fov * (Math.PI / 180);
+            const cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2)) * 2.5;
+            camera.position.set(0, 1.5, cameraZ);
+            controls.target.set(0, 1, 0);
+            controls.update();
+            renderer.render(scene, camera);
+        };
+        window.toggleRotation = () => { 
+            autoRotate = !autoRotate; 
+            controls.autoRotate = autoRotate; 
+            const btn = document.getElementById('rotateToggle');
+            btn.innerHTML = autoRotate ? '<i class="fas fa-pause"></i>' : '<i class="fas fa-play"></i>';
+        };
+        window.toggleFullscreen = () => {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen();
+            } else {
+                document.exitFullscreen();
             }
-        }
-
-        // Expose function to window for page switching
-        window.enableModelViewer = function() {
-            isModelPageActive = true;
-            if (!renderer) initThreeJS();
-            onWindowResize(); // Fix size on show
         };
-
-        window.disableModelViewer = function() {
-            isModelPageActive = false;
-        };
-    </script>
-
-    <script>
-        // Page Switching Logic
-        function switchPage(pageName) {
-            const mainPage = document.getElementById('mainPage');
-            const contactsPage = document.getElementById('contactsPage');
-            const modelPage = document.getElementById('modelPage');
-            const header = document.getElementById('mainHeader');
-            
-            const navMain = document.querySelector('.nav-main');
-            const navContacts = document.querySelector('.nav-contacts');
-            const navModel = document.querySelector('.nav-model');
-
-            // Reset nav active states
-            if(navMain) navMain.classList.remove('active-link');
-            if(navContacts) navContacts.classList.remove('active-link');
-            if(navModel) navModel.classList.remove('active-link');
-
-            // Hide all
-            mainPage.classList.remove('active');
-            mainPage.style.opacity = '0';
-            
-            contactsPage.classList.remove('active');
-            contactsPage.style.opacity = '0';
-            contactsPage.style.display = 'none';
-
-            modelPage.classList.remove('active');
-            modelPage.style.opacity = '0';
-            modelPage.style.display = 'none';
-
-            setTimeout(() => {
-                // Show selected
-                if (pageName === 'main') {
-                    mainPage.style.display = 'block';
-                    setTimeout(() => mainPage.style.opacity = '1', 50);
-                    header.classList.remove('solid');
-                    if(navMain) navMain.classList.add('active-link');
-                    window.disableModelViewer();
-                } 
-                else if (pageName === 'contacts') {
-                    contactsPage.style.display = 'flex';
-                    setTimeout(() => {
-                        contactsPage.classList.add('active');
-                        contactsPage.style.opacity = '1';
-                    }, 50);
-                    header.classList.add('solid');
-                    if(navContacts) navContacts.classList.add('active-link');
-                    window.disableModelViewer();
-                } 
-                else if (pageName === 'model') {
-                    modelPage.style.display = 'flex';
-                    setTimeout(() => {
-                        modelPage.classList.add('active');
-                        modelPage.style.opacity = '1';
-                    }, 50);
-                    header.classList.add('solid');
-                    if(navModel) navModel.classList.add('active-link');
-                    window.enableModelViewer();
-                }
-                window.scrollTo(0, 0);
-            }, 500);
-        }
-
-        // Slider Logic
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.slide');
-        const dots = document.querySelectorAll('.dot');
-        const totalSlides = slides.length;
-
-        function showSlide(index) {
-            slides.forEach((slide, i) => { slide.classList.remove('active'); dots[i].classList.remove('active'); });
-            slides[index].style.animation = 'none';
-            slides[index].offsetHeight;
-            slides[index].style.animation = 'zoomIn 20s ease-in-out forwards';
-            slides[index].classList.add('active');
-            dots[index].classList.add('active');
-            currentSlide = index;
-        }
-
-        function changeSlide(direction) {
-            let newIndex = currentSlide + direction;
-            if (newIndex >= totalSlides) newIndex = 0;
-            else if (newIndex < 0) newIndex = totalSlides - 1;
-            showSlide(newIndex);
-        }
-
-        function goToSlide(index) { showSlide(index); }
-        setInterval(() => { changeSlide(1); }, 6000);
         
-        function scrollToAbout() {
-            document.getElementById('about').scrollIntoView({ behavior: 'smooth' });
+        function onWindowResize() { 
+            const container = document.getElementById('canvas-container');
+            if(!container || !camera || !renderer) return; 
+            camera.aspect = container.clientWidth/container.clientHeight; 
+            camera.updateProjectionMatrix(); 
+            renderer.setSize(container.clientWidth, container.clientHeight); 
+            renderer.render(scene, camera); 
+        }
+        
+        function animate() { 
+            requestAnimationFrame(animate); 
+            if(controls) controls.update(); 
+            if(renderer && scene && camera) renderer.render(scene, camera); 
         }
 
-        window.addEventListener('scroll', () => {
-            const header = document.getElementById('mainHeader');
-            const mainPage = document.getElementById('mainPage');
-            // Only apply scroll effect if we are on main page and it is visible
-            if (mainPage.classList.contains('active')) {
-                if (window.scrollY > 100) header.classList.add('solid');
-                else header.classList.remove('solid');
-            }
+        // ===== UI ЛОГИКА =====
+        function switchPage(id) {
+            document.querySelectorAll('nav a').forEach(a => a.classList.remove('active-link'));
+            document.querySelector(`.nav-${id}`)?.classList.add('active-link');
+            
+            document.querySelectorAll('.page').forEach(p => { 
+                p.classList.remove('active'); 
+                p.style.opacity = '0'; 
+                p.style.display = 'none'; 
+            });
+            
+            setTimeout(() => {
+                const t = document.getElementById(id+'Page');
+                t.style.display = id==='model' ? 'flex' : (id==='contacts' ? 'flex' : 'block');
+                void t.offsetHeight;
+                setTimeout(() => { t.classList.add('active'); t.style.opacity = '1'; }, 50);
+                window.scrollTo({top:0, behavior:'smooth'});
+                
+                if(id==='model') {
+                    setTimeout(() => {
+                        if(!isInitialized) initThreeJS();
+                        onWindowResize(); 
+                        renderer.render(scene, camera);
+                    }, 100);
+                }
+            }, 300);
+        }
+
+        function openPerson(i) {
+            document.getElementById('personalitiesPage').classList.remove('active');
+            document.getElementById('personalitiesPage').style.opacity = '0';
+            setTimeout(() => {
+                document.getElementById('personalitiesPage').style.display = 'none';
+                const p = document.getElementById('person'+i);
+                p.style.display = 'block';
+                setTimeout(() => { p.classList.add('active'); p.style.opacity = '1'; }, 50);
+                window.scrollTo({top:0, behavior:'smooth'});
+            }, 400);
+        }
+
+        function backToGallery() {
+            document.querySelectorAll('.person-detail-page').forEach(p => { p.classList.remove('active'); p.style.opacity = '0'; });
+            setTimeout(() => {
+                document.querySelectorAll('.person-detail-page').forEach(p => p.style.display = 'none');
+                const g = document.getElementById('personalitiesPage');
+                g.style.display = 'block';
+                setTimeout(() => { g.classList.add('active'); g.style.opacity = '1'; }, 50);
+                window.scrollTo({top:0, behavior:'smooth'});
+            }, 400);
+        }
+
+        function toggleMobileMenu() { document.querySelector('nav')?.classList.toggle('open'); }
+
+        // ===== CONTACT FORM WITH AJAX =====
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const btn = document.getElementById('submitBtn');
+            const status = document.getElementById('formStatus');
+            const formData = new FormData(this);
+            
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Отправка...';
+            status.style.display = 'none';
+            
+            fetch('https://formsubmit.co/ajax/tueva.annal@yandex.ru', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json'
+                },
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if(data.success) {
+                    status.className = 'form-status success';
+                    status.innerHTML = '<i class="fas fa-check-circle"></i> Сообщение отправлено!';
+                    this.reset();
+                } else {
+                    status.className = 'form-status error';
+                    status.innerHTML = '<i class="fas fa-exclamation-circle"></i> Ошибка отправки';
+                }
+            })
+            .catch(() => {
+                status.className = 'form-status error';
+                status.innerHTML = '<i class="fas fa-exclamation-circle"></i> Ошибка соединения';
+            })
+            .finally(() => {
+                status.style.display = 'block';
+                btn.disabled = false;
+                btn.innerHTML = 'Отправить';
+                setTimeout(() => { status.style.display = 'none'; }, 4000);
+            });
         });
+
+        let currentSlide = 0; const slides = document.querySelectorAll('.slide'), dots = document.querySelectorAll('.dot');
+        function showSlide(i) { slides.forEach((s,idx) => { s.classList.remove('active'); dots[idx].classList.remove('active'); }); slides[i].style.animation='none'; slides[i].offsetHeight; slides[i].style.animation='zoomIn 20s ease-in-out forwards'; slides[i].classList.add('active'); dots[i].classList.add('active'); currentSlide=i; }
+        function changeSlide(d) { let n=currentSlide+d; if(n>=slides.length)n=0; else if(n<0)n=slides.length-1; showSlide(n); }
+        setInterval(()=>changeSlide(1),6000);
+        
+        // ===== SCROLL TO ABOUT =====
+        function scrollToAbout() {
+            const aboutSection = document.getElementById('about');
+            const headerHeight = document.getElementById('mainHeader').offsetHeight;
+            const aboutPosition = aboutSection.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+            window.scrollTo({ top: aboutPosition, behavior: 'smooth' });
+        }
     </script>
 </body>
 </html>
